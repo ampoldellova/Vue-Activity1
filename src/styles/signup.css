@@ -1,0 +1,53 @@
+.image-container {
+  z-index: 1;
+}
+
+.inner-container {
+  z-index: 50;
+  width: 400px;
+}
+
+.submit {
+  margin-top: 30px;
+}
+
+.el-input__inner {
+  font-family: extraLight;
+  color: white;
+}
+
+.el-dialog__title {
+  font-family: bold;
+  color: white;
+}
+
+.el-select__wrapper {
+  background-color: transparent;
+  height: 48px;
+}
+
+.el-select__placeholder.is-transparent {
+  color: white;
+  font-family: extraLight;
+  margin-left: 35px;
+}
+
+.el-select__caret {
+  color: white;
+}
+
+.el-select__selected-item {
+  color: white;
+  font-family: regular;
+  margin-left: 35px;
+  width: 300px;
+}
+
+.el-form-item__error {
+  font-family: regular;
+  position: unset;
+}
+
+.el-date-editor.el-input {
+  height: 50px;
+}
