@@ -78,23 +78,23 @@ const rules = reactive<FormRules>({
 
 const options = [
   {
-    value: 'BSIT',
+    value: 'BS in Information and Technology',
     label: 'Bachelor of Science in Information and Technology',
   },
   {
-    value: 'BCS',
+    value: 'Bachelor in Computer Science',
     label: 'Bachelor in Computer Science',
   },
   {
-    value: 'BST',
+    value: 'BS in Tourism',
     label: 'Bachelor of Science in Tourism',
   },
   {
-    value: 'BSHRM',
+    value: 'BS in Hotel and Restaurant Management',
     label: 'Bachelor of Science in Hotel and Restaurant Management',
   },
   {
-    value: 'BSN',
+    value: 'BS in Nursing',
     label: 'Bachelor of Science in Nursing',
   },
 ]
