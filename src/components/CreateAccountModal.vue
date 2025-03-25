@@ -2,17 +2,24 @@
 import { Lock, Unlock, User } from '@element-plus/icons-vue'
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus'
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
   createAccountModal: Boolean,
   profileId: String,
 })
 
+const generateRandomId = () => {
+  return Math.random().toString(36).slice(2, 9)
+}
+
 const emit = defineEmits(['update:createAccountModal'])
 const formSize = ref<ComponentSize>('default')
 const ruleFormRef = ref<FormInstance>()
 const form = reactive({
-  id: '',
+  id: generateRandomId(),
   profileId: props.profileId,
   username: '',
   password: '',
@@ -70,6 +77,15 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
+      const existingData = localStorage.getItem('studentAccounts')
+
+      let studentAccounts = existingData ? JSON.parse(existingData) : []
+
+      studentAccounts.push(form)
+
+      localStorage.setItem('studentAccounts', JSON.stringify(studentAccounts))
+
+      router.push('/')
       console.log(form)
     } else {
       console.log(form)
@@ -95,6 +111,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     "
   >
     <el-form ref="ruleFormRef" :model="form" :rules="rules" :size="formSize" status-icon>
+      <!-- Username -->
       <el-row style="margin-top: 30px; z-index: 50">
         <el-col :span="24">
           <el-form-item prop="username">
@@ -110,6 +127,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         </el-col>
       </el-row>
 
+      <!-- Password -->
       <el-row style="z-index: 50">
         <el-col :span="24">
           <el-form-item prop="password">
@@ -126,6 +144,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         </el-col>
       </el-row>
 
+      <!-- Confirm Password -->
       <el-row style="z-index: 50">
         <el-col :span="24">
           <el-form-item prop="confirmPassword">
@@ -150,7 +169,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           margin-top: 20px;
           width: 100%;
           margin-bottom: 20px;
+          font-family: semiBold;
         "
+        size="large"
       >
         SUBMIT
       </el-button>

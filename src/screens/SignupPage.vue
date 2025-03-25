@@ -105,8 +105,14 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       validDetails.value = true
       createAccountModal.value = true
-      console.log(form)
-      console.log(createAccountModal.value)
+
+      const existingData = localStorage.getItem('studentInfos')
+
+      let studentInfos = existingData ? JSON.parse(existingData) : []
+
+      studentInfos.push(form)
+
+      localStorage.setItem('studentInfos', JSON.stringify(studentInfos))
     } else {
       validDetails.value = false
       console.log('error submit!', fields)
@@ -266,7 +272,7 @@ watch(
     </div>
   </div>
 
-  <CreateAccountModal v-model="createAccountModal" :profileId="form.id" />
+  <CreateAccountModal v-model="createAccountModal" :profileId="form.id = generateRandomId()" />
 </template>
 
 <style scoped></style>
