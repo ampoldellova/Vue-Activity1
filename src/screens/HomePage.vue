@@ -42,10 +42,10 @@ students.value = JSON.parse(loadedStudents)
   position: relative;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .cards {
     flex-direction: column;
     align-items: center;
   }
-}
+} */
 </style>
