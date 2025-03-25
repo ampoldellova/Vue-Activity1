@@ -137,6 +137,7 @@ watch(
   <div class="container">
     <div class="inner-container">
       <el-form ref="ruleFormRef" :model="form" :rules="rules" :size="formSize" status-icon>
+        <!-- First Name -->
         <el-row>
           <el-col :span="24">
             <el-form-item prop="firstName">
@@ -152,6 +153,7 @@ watch(
           </el-col>
         </el-row>
 
+        <!-- Middle Name and Last Name -->
         <el-row :gutter="20">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
             <el-form-item prop="middleName">
@@ -179,6 +181,7 @@ watch(
           </el-col>
         </el-row>
 
+        <!-- Age and Birthdate -->
         <el-row :gutter="20">
           <el-col :span="10">
             <el-form-item prop="age">
@@ -204,6 +207,7 @@ watch(
           </el-col>
         </el-row>
 
+        <!-- Address -->
         <el-row>
           <el-col :span="24">
             <el-form-item prop="address">
@@ -219,6 +223,7 @@ watch(
           </el-col>
         </el-row>
 
+        <!-- Course -->
         <el-row>
           <el-col :span="24">
             <el-form-item prop="course">
