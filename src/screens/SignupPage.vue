@@ -23,7 +23,7 @@ const form = reactive({
   middleName: '',
   lastName: '',
   birthDate: '',
-  age: '',
+  age: 0,
   address: '',
   course: '',
 })
@@ -188,8 +188,8 @@ watch(
         </el-row>
 
         <!-- Age and Birthdate -->
-        <el-row :gutter="20">
-          <el-col :span="10">
+        <el-row>
+          <!-- <el-col :span="10">
             <el-form-item prop="age">
               <el-input
                 v-model.number="form.age"
@@ -200,8 +200,8 @@ watch(
                 input-style="font-family:regular; color:white"
               />
             </el-form-item>
-          </el-col>
-          <el-col :span="14">
+          </el-col> -->
+          <el-col :span="18">
             <el-form-item prop="birthDate">
               <el-date-picker
                 v-model="form.birthDate"
@@ -210,6 +210,18 @@ watch(
                 style="width: 100%"
               />
             </el-form-item>
+            <el-text
+              style="
+                position: absolute;
+                color: white;
+                font-family: extraLight;
+                top: 0%;
+                right: 0%;
+                padding: 15px;
+              "
+            >
+              Age: {{ form.age }}
+            </el-text>
           </el-col>
         </el-row>
 
