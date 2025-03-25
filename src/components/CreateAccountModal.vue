@@ -93,12 +93,23 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     }
   })
 }
+
+const handleBeforeClose = (done: () => void) => {
+  if (!ruleFormRef.value) return
+  ruleFormRef.value.validate((valid) => {
+    if (valid) {
+      done()
+    } else {
+      console.log('Form has errors, cannot close dialog.')
+    }
+  })
+}
 </script>
 
 <template>
   <el-dialog
-    @close="emit('update:createAccountModal', false)"
     :model-value="createAccountModal"
+    :before-close="handleBeforeClose"
     title="Register your account"
     width="400"
     align-center
