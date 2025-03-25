@@ -7,11 +7,18 @@ import circle2 from '../assets/circle2.png'
 import circle3 from '../assets/circle3.png'
 import { reactive, ref, watch } from 'vue'
 import '../styles/signup.css'
+
 const validDetails = ref(false)
 const createAccountModal = ref(false)
 const formSize = ref<ComponentSize>('default')
 const ruleFormRef = ref<FormInstance>()
+
+const generateRandomId = () => {
+  return Math.random().toString(36).slice(2, 9)
+}
+
 const form = reactive({
+  id: generateRandomId(),
   firstName: '',
   middleName: '',
   lastName: '',
@@ -31,7 +38,7 @@ const firstName = (rule: any, value: any, callback: any) => {
 
 const middleName = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error('Please input your first name'))
+    callback(new Error('Please input your middle name'))
   } else {
     callback()
   }
@@ -39,7 +46,7 @@ const middleName = (rule: any, value: any, callback: any) => {
 
 const lastName = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error('Please input your first name'))
+    callback(new Error('Please input your last name'))
   } else {
     callback()
   }
@@ -47,7 +54,7 @@ const lastName = (rule: any, value: any, callback: any) => {
 
 const age = (rule: any, value: any, callback: any) => {
   if (!value) {
-    return callback(new Error('Please input the age'))
+    return callback(new Error('Please input your age'))
   } else if (!Number.isInteger(value)) {
     callback(new Error('Please input digits'))
   } else if (value < 18) {
@@ -98,6 +105,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       validDetails.value = true
       createAccountModal.value = true
+      console.log(form)
       console.log(createAccountModal.value)
     } else {
       validDetails.value = false
@@ -253,7 +261,7 @@ watch(
     </div>
   </div>
 
-  <CreateAccountModal v-model="createAccountModal" />
+  <CreateAccountModal v-model="createAccountModal" :profileId="form.id" />
 </template>
 
 <style scoped></style>

@@ -5,6 +5,7 @@ import { reactive, ref } from 'vue'
 
 const props = defineProps({
   createAccountModal: Boolean,
+  profileId: String,
 })
 
 const emit = defineEmits(['update:createAccountModal'])
@@ -12,6 +13,7 @@ const formSize = ref<ComponentSize>('default')
 const ruleFormRef = ref<FormInstance>()
 const form = reactive({
   id: '',
+  profileId: props.profileId,
   username: '',
   password: '',
   confirmPassword: '',
@@ -70,6 +72,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       console.log(form)
     } else {
+      console.log(form)
       console.log('error submit!', fields)
     }
   })
@@ -141,7 +144,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
       <el-button
         @click="submitForm(ruleFormRef)"
-        style="background-color: white; color: #2148c0; margin-top: 20px; width: 100%"
+        style="
+          background-color: white;
+          color: #2148c0;
+          margin-top: 20px;
+          width: 100%;
+          margin-bottom: 20px;
+        "
       >
         SUBMIT
       </el-button>
